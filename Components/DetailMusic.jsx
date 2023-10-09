@@ -5,41 +5,35 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Fater from "react-native-vector-icons/Feather";
 import Evil from "react-native-vector-icons/EvilIcons";
-import DetailMusicStyles from "../Styles/DetailMusicStyles";
-const DetailMusic = ({ infoSong }) => {
+import {DetailMusicStyles, DetailMusicStylesLandscape }  from "../Styles/DetailMusicStyles";
+const DetailMusic = ({ infoSong,orientation}) => {
+  const Styles = orientation ? DetailMusicStylesLandscape : DetailMusicStyles;
   return (
     <View style={{ flex: 1, marginTop: "10%" }}>
-      <View style={DetailMusicStyles.backgroundContainer}>
-        <View style={DetailMusicStyles.backgroundContainerShadow}></View>
+      <View style={Styles.backgroundContainer}>
+        <View style={Styles.backgroundContainerShadow}></View>
       </View>
-      <View style={DetailMusicStyles.infoContainer}>
+      <View style={Styles.infoContainer}>
         <Image
-          style={DetailMusicStyles.infoImage}
+          style={Styles.infoImage}
           source={{ uri: infoSong.image }}
         />
 
         <View style={{ marginTop: "10%" }}>
           <Text
-            style={{
-              textAlign: "center",
-              color: "#000",
-              fontSize: 20,
-              fontWeight: 700,
-              marginBottom: 10,
-            }}
-          >
+            style={Styles.nameSong}>
             {infoSong.track}
           </Text>
-          <Text style={DetailMusicStyles.artistLabel}>{infoSong.artist}</Text>
+          <Text style={Styles.artistLabel}>{infoSong.artist}</Text>
         </View>
-        <View>
-          <View style={DetailMusicStyles.progressLabelContainer}>
-            <Text style={DetailMusicStyles.progressLabelTxt}>0:00</Text>
-            <Text style={DetailMusicStyles.progressLabelTxt}>3:30</Text>
+        <View style={Styles.reproductorContainer}>
+          <View style={Styles.progressLabelContainer}>
+            <Text style={Styles.progressLabelTxt}>0:00</Text>
+            <Text style={Styles.progressLabelTxt}>3:30</Text>
           </View>
 
           <Slider
-            style={DetailMusicStyles.progresContainer}
+            style={Styles.progresContainer}
             value={10}
             minimumValue={0}
             maximumValue={100}
@@ -49,7 +43,7 @@ const DetailMusic = ({ infoSong }) => {
             onSlidingComplete={() => {}}
           />
 
-          <View style={DetailMusicStyles.musicControlls}>
+          <View style={Styles.musicControlls}>
             <TouchableOpacity onPress={() => {}}>
               <Ionicons
                 name="play-skip-back-outline"
@@ -73,32 +67,32 @@ const DetailMusic = ({ infoSong }) => {
             </TouchableOpacity>
           </View>
 
-          <View style={DetailMusicStyles.iconsContainer}>
-            <View style={DetailMusicStyles.icon}>
-              <Text style={DetailMusicStyles.listenerLabel}>
+          <View style={Styles.iconsContainer}>
+            <View style={Styles.icon}>
+              <Text style={Styles.listenerLabel}>
                 <Evil name="like" size={25} color={"black"} />
               </Text>
-              <Text style={DetailMusicStyles.iconText}>
+              <Text style={Styles.iconText}>
                 {infoSong.listeners}
               </Text>
             </View>
 
-            <View style={DetailMusicStyles.icon}>
-              <Text style={DetailMusicStyles.listenerLabel}>
+            <View style={Styles.icon}>
+              <Text style={Styles.listenerLabel}>
                 <Fater name="share-2" size={24} color={"black"} />
               </Text>
-              <Text style={DetailMusicStyles.iconText}>{25}</Text>
+              <Text style={Styles.iconText}>{25}</Text>
             </View>
 
-            <View style={DetailMusicStyles.icon}>
-              <Text style={DetailMusicStyles.listenerLabel}>
+            <View style={Styles.icon}>
+              <Text style={Styles.listenerLabel}>
                 <MaterialCommunityIcons
                   name="ear-hearing"
                   size={24}
                   color={"black"}
                 />
               </Text>
-              <Text style={DetailMusicStyles.iconText}>
+              <Text style={Styles.iconText}>
                 {infoSong.listeners}
               </Text>
             </View>

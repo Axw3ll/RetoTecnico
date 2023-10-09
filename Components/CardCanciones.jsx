@@ -3,6 +3,7 @@ import { Text, View,StyleSheet,Image, TouchableOpacity,Button, Pressable} from '
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { truncateString } from "../Helpers/TruncateStringHelper";
 
+
 export const CardCanciones = ({name,artista,img,setModalVisible,modalVisible,CancionDetail,setReproductorVisible,reproductorVisible}) => {
   return (
     

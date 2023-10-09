@@ -1,9 +1,11 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Slider from "@react-native-community/slider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { truncateString } from "../Helpers/TruncateStringHelper";
-const ReproductorModal = ({ infoSong }) => {
+import { Dimensions } from "react-native";
+const ReproductorModal = ({ infoSong, orientation }) => {
+  
   return (
     <View style={styles.container}>
       <Image style={styles.containerImage} source={{ uri: infoSong.image }} />
@@ -95,4 +97,5 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
 });
+
 export default ReproductorModal;

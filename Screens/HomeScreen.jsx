@@ -5,6 +5,7 @@ import {
   FlatList,
   Modal,
   Pressable,
+  Dimensions
 } from "react-native";
 import { CardCanciones } from "../Components/CardCanciones";
 import { TopArtists, getTopTracks } from "../Hooks/Tracks";
@@ -13,6 +14,7 @@ import DetailMusic from "../Components/DetailMusic";
 import Entypo from "react-native-vector-icons/Entypo";
 import HomeScreenStyles from "../Styles/HomeScreenStyles";
 import ReproductorModal from "../Components/ReproductorModal";
+
 const HomeScreen = ({ navigation }) => {
 
   const [dataSongs, setDataSongs] = useState([]);
@@ -20,8 +22,16 @@ const HomeScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [reproductorVisible, setReproductorVisible] = useState(false);
   const [infoSong, setInfoSong] = useState([]);
+  const [orientation, setOrientation] = useState(
+    Dimensions.get("window").width > Dimensions.get("window").height
+  );
 
   useEffect(() => {
+    const handleOrientation = ({ window }) => {
+      const { width, height } = window;
+      setOrientation(width > height);
+    };
+    Dimensions.addEventListener("change", handleOrientation);
     const topMusic = async () => {
       try {
         const response = await getTopTracks();
@@ -32,7 +42,9 @@ const HomeScreen = ({ navigation }) => {
     };
     topMusic();
     setTopArtist();
-  }, []);
+    return () => {
+      Dimensions.removeEventListener('change', handleOrientation);
+  }}, []);
 
   const setTopArtist = async () => {
     try {
@@ -82,12 +94,11 @@ const HomeScreen = ({ navigation }) => {
         animationType="slide"
         visible={modalVisible}
         transparent={true}
-        presentationStyle="overFullScreen"
         onRequestClose={() => {
           setModalVisible(!modalVisible);
         }}
       >
-        <DetailMusic infoSong={infoSong} />
+        <DetailMusic orientation={orientation}  infoSong={infoSong} />
       </Modal>      
       {reproductorVisible ? <ReproductorModal infoSong={infoSong} />: null}
     </View>
