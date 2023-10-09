@@ -1,15 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+const apiUrl='https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=mexico&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&limit=20'
 
-const apiKey = '6536ef9ae6f35b731ee6a59ddd98ac13';
-const apiUrl = 'http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=mexico&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&limit=20';
+const artistUrl = 'https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=TOLE_M&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&limit=5';
 
-const LastTracksUrl = 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=TOLE_M&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&'
-
-const artistUrl = 'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=TOLE_M&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&limit=5'
+const LastTracksUrl = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=TOLE_M&api_key=6536ef9ae6f35b731ee6a59ddd98ac13&format=json&'
 
 const getTopTracks = async ()=>{
-    const response = await axios.get(apiUrl);
+    try{    
+        const response = await axios.get(apiUrl);
     const tracks = response.data.tracks.track;
     const InfoMusica = await tracks.map((track)=>{
         return{
@@ -21,6 +20,11 @@ const getTopTracks = async ()=>{
         }
     });
     return(InfoMusica);
+
+    }catch(error){
+        console.log(error);
+    }
+
 }
 
 const RecentTracks = async () => {
@@ -48,11 +52,12 @@ const TopArtists = async () => {
             return{
                 name: artist.name,
                 image: artist.image[2]['#text'],
+                
             }
         });
         return (topArtists);
     }catch(error){
-        console.log(error);
+        console.log('aqui',error);
     }
   
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View,StyleSheet,Image, TouchableOpacity,Button, Pressable} from 'react-native'
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { truncateString } from "../Helpers/TruncateStringHelper";
+
 export const CardCanciones = ({name,artista,img,setModalVisible,modalVisible,CancionDetail,setReproductorVisible,reproductorVisible}) => {
   return (
     
@@ -11,7 +13,7 @@ export const CardCanciones = ({name,artista,img,setModalVisible,modalVisible,Can
         >
             <Image style={styles.imgContainer} source={{uri:img}}/>
         <View>
-            <Text style={styles.songName}>{name}</Text>
+            <Text style={styles.songName}>{truncateString(name,18)}</Text>
             <Text style={styles.artistName}>{artista}</Text>
         </View>
         <Pressable 

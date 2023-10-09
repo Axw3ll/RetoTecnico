@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Slider from "@react-native-community/slider";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { truncateString } from "../Helpers/TruncateStringHelper";
 const ReproductorModal = ({ infoSong }) => {
   return (
     <View style={styles.container}>
@@ -9,7 +10,7 @@ const ReproductorModal = ({ infoSong }) => {
       <View style={styles.contentContainer}>
         <View style={styles.infoSong}>
           <View View>
-            <Text>{infoSong.track}</Text>
+            <Text>{truncateString(infoSong.track,18)}</Text>
             <Text style={styles.labelArtist}>{infoSong.artist}</Text>
           </View>
           <View style={styles.musicControlls}>
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   infoSong: {
     marginTop: 10,
     width: "100%",
-    height: "35%",
+    height: "39%",
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -86,7 +87,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 40,
     flexDirection: "row",
-    backgroundColor: "#FFF",
   },
   musicControlls: {
     width: "40%",

@@ -22,11 +22,10 @@ const DetailMusicStyles = StyleSheet.create({
     marginTop: "15%",
   },
   progresContainer: {
-    height: 70,
+    
     flexDirection: "row",
   },
   progressLabelContainer: {
-    width: 340,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -36,7 +35,7 @@ const DetailMusicStyles = StyleSheet.create({
   musicControlls: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 15,
+    marginTop: '1%',
   },
   listenerLabel: {
     textAlign: "center",
@@ -47,8 +46,8 @@ const DetailMusicStyles = StyleSheet.create({
   iconsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 15,
-    marginBottom: 5,
+    marginTop: '10%',
+    marginBottom: '1%',
   },
   icon: {
     flexDirection: "row",

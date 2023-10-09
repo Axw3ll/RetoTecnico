@@ -1,11 +1,9 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './Screens/HomeScreen';
-import ProfileScreen from './Screens/ProfileScreen';
 import DrawerNavigation from './Navigation/DrawerNavigation';
 import {NavigationContainer} from '@react-navigation/native'; 
-import React from 'react';
+import React,{useEffect} from 'react';
 
 export default function App() {
   return (

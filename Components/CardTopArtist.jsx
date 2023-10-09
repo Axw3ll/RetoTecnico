@@ -1,7 +1,8 @@
 import React from 'react'
 import { StyleSheet,View,Text,Image, TouchableOpacity } from 'react-native'
-
+import { truncateString } from '../Helpers/TruncateStringHelper'
 const CardTopArtist = ({name,artista,img}) => {
+
   return (
     <TouchableOpacity 
         style={styles.contianer}
@@ -12,7 +13,7 @@ const CardTopArtist = ({name,artista,img}) => {
         source={{uri:img}}
         />
         <View>
-            <Text style={styles.songName}>{name}</Text>
+            <Text style={styles.songName}>{truncateString(name,18)}</Text>
             <Text style={styles.artistName}>{artista}</Text>
         </View>
     </TouchableOpacity>
